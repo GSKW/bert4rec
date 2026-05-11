@@ -1,0 +1,25 @@
+input_manifest_path: artifacts/manifests/normalize_manifest.json
+vocab_path: artifacts/vocab/event_token_vocab.json
+manifest_path: artifacts/manifests/sequences_manifest.json
+
+work_dir: artifacts/work
+sorted_events_path: artifacts/work/events_sorted_for_sequences.parquet
+splits_dir: data/splits
+processed_dir: data/processed
+
+prefix_lengths: [50, 100, 150]
+retention_days: [7, 14]
+split:
+  train: 0.70
+  valid: 0.15
+  test: 0.15
+  seed: 42
+
+duckdb:
+  memory_limit: 20GB
+  threads: 4
+  temp_directory: artifacts/work/duckdb_tmp
+
+parquet:
+  compression: zstd
+  row_group_size: 100000

@@ -1,0 +1,14 @@
+input_manifest_path: artifacts/manifests/ingest_manifest.json
+output_dir: data/interim
+output_pattern: events_normalized_{shard_idx:05d}.parquet
+manifest_path: artifacts/manifests/normalize_manifest.json
+
+parquet:
+  compression: zstd
+  row_group_size: 100000
+
+json:
+  max_depth: 8
+  max_leaf_tokens: 48
+  max_value_chars: 80
+  numeric_bucket_base: 2

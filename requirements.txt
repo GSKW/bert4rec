@@ -1,0 +1,11 @@
+duckdb
+matplotlib
+numpy
+openpyxl
+pandas
+pyarrow
+scikit-learn
+torch
+tqdm
+wandb
+jupyter

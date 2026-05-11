@@ -1,0 +1,21 @@
+checkpoint_path: artifacts/checkpoints/checkpoint_best.pt
+event_vocab_path: artifacts/vocab/event_token_vocab.json
+train_config_path: configs/train.yaml
+manifest_path: artifacts/manifests/main_embeddings_manifest.json
+
+input_prefixes:
+  train: data/processed/train_prefixes.parquet
+  valid: data/processed/valid_prefixes.parquet
+  test: data/processed/test_prefixes.parquet
+
+outputs:
+  cls: data/exports/main_embeddings_cls.parquet
+  mean: data/exports/main_embeddings_mean.parquet
+  readout: data/exports/main_embeddings_readout.parquet
+
+export:
+  batch_size: 512
+  num_workers: 0
+  device: auto
+  mixed_precision: true
+  dry_run_rows:

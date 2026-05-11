@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-05-10T12:56:36.661302+00:00",
+  "dataset_max_ts": 1774814007,
+  "input_manifest_path": "artifacts/manifests/normalize_manifest.json",
+  "label_definition": "retention_Xd = any event in [prefix_end_ts + X days, prefix_end_ts + X days + 1 day); unavailable if dataset ends before window end",
+  "max_shards": null,
+  "prefix_lengths": [
+    50,
+    100,
+    150
+  ],
+  "retention_days": [
+    7,
+    14
+  ],
+  "sorted_events_path": "artifacts/work/events_sorted_for_sequences.parquet",
+  "splits": {
+    "test": {
+      "prefixes": 20853,
+      "users": 10270
+    },
+    "train": {
+      "prefixes": 97122,
+      "users": 47957
+    },
+    "valid": {
+      "prefixes": 21148,
+      "users": 10317
+    }
+  },
+  "time_gap_vocab_path": "artifacts/vocab/time_gap_vocab.json",
+  "vocab_path": "artifacts/vocab/event_token_vocab.json"
+}

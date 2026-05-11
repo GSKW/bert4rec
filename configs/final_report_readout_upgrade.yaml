@@ -1,0 +1,5 @@
+sequence_metrics_path: artifacts/reports/sequence_metrics.csv
+downstream_metrics_path: artifacts/reports/downstream_metrics_readout_upgrade.csv
+output_xlsx: artifacts/reports/final_results_readout_upgrade.xlsx
+output_dir: artifacts/reports/final_plots_readout_upgrade
+manifest_path: artifacts/manifests/final_report_readout_upgrade_manifest.json

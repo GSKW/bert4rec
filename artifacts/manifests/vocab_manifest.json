@@ -1,0 +1,500 @@
+{
+  "created_at": "2026-05-10T12:49:53.298310+00:00",
+  "input_manifest_path": "artifacts/manifests/normalize_manifest.json",
+  "num_shards": 74,
+  "parse_errors_seen": 6708,
+  "rows_seen": 73063802,
+  "special_tokens": [
+    "[PAD]",
+    "[UNK]",
+    "[MASK]",
+    "[CLS]"
+  ],
+  "vocabs": {
+    "attribute": {
+      "coverage_occurrences": 0.9914899847109444,
+      "frequency_path": "artifacts/vocab/attribute_frequencies.json",
+      "kept_occurrences": 510098311,
+      "kept_unique": 254817,
+      "max_size": 1000000,
+      "min_freq": 3,
+      "oov_occurrences": 4378203,
+      "oov_unique": 4241560,
+      "size": 254821,
+      "source_column": "attribute_tokens",
+      "top_tokens": [
+        {
+          "count": 36063151,
+          "token": "path=DaySinceInstall"
+        },
+        {
+          "count": 36063151,
+          "token": "path=PlayTimeMinutes"
+        },
+        {
+          "count": 26432849,
+          "token": "path=State_GateLevel"
+        },
+        {
+          "count": 26432849,
+          "token": "path=State_HeistLevel"
+        },
+        {
+          "count": 26432849,
+          "token": "path=State_HeistUnlocked"
+        },
+        {
+          "count": 26432849,
+          "token": "path=State_LabLevel"
+        },
+        {
+          "count": 26432849,
+          "token": "path=State_LabUnlocked"
+        },
+        {
+          "count": 12095340,
+          "token": "path=State_AdRewardCoeff"
+        },
+        {
+          "count": 6830132,
+          "token": "path=ButtonShown"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_ad_cnt"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_boss_kills_last_minute"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_critical_chance_lvl"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_critical_mult_lvl"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_damage"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_damage_lvl"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_death_cnt"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_game_minute"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_hard_balance"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_hard_revenue_last_minute"
+        },
+        {
+          "count": 5055746,
+          "token": "path=user_snapshot_active_state_hardness_calculate"
+        }
+      ],
+      "total_occurrences": 514476514,
+      "total_unique": 4496377,
+      "vocab_path": "artifacts/vocab/attribute_vocab.json"
+    },
+    "event_token": {
+      "coverage_occurrences": 0.9984500259102311,
+      "frequency_path": "artifacts/vocab/event_token_frequencies.json",
+      "kept_occurrences": 72950555,
+      "kept_unique": 114155,
+      "max_size": 500000,
+      "min_freq": 2,
+      "oov_occurrences": 113247,
+      "oov_unique": 113247,
+      "size": 114159,
+      "source_column": "event_signature",
+      "top_tokens": [
+        {
+          "count": 6827400,
+          "token": "event=REWARD|json=ButtonShown+DaySinceInstall+PlayTimeMinutes+State"
+        },
+        {
+          "count": 5055746,
+          "token": "event=machine_learning|json=user_snapshot_active_state"
+        },
+        {
+          "count": 2282851,
+          "token": "event=Training|json=Damage+DaySinceInstall+PlayTimeMinutes+State"
+        },
+        {
+          "count": 2259276,
+          "token": "event=Equipment levels|json=Weapon"
+        },
+        {
+          "count": 2144748,
+          "token": "event=Training|json=DaySinceInstall+Heath+PlayTimeMinutes+State"
+        },
+        {
+          "count": 1790537,
+          "token": "event=Training|json=DaySinceInstall+PlayTimeMinutes+Regen+State"
+        },
+        {
+          "count": 1575222,
+          "token": "event=machine_learning|json=ad_offer"
+        },
+        {
+          "count": 1567051,
+          "token": "event=Equipment merges|json=Weapon"
+        },
+        {
+          "count": 1201913,
+          "token": "event=Gun Store|json=DaySinceInstall+PlayTimeMinutes+Roll 10+State"
+        },
+        {
+          "count": 1171860,
+          "token": "event=Replay|json=Resources"
+        },
+        {
+          "count": 952543,
+          "token": "event=REWARD|json=DaySinceInstall+LOADED+PlayTimeMinutes"
+        },
+        {
+          "count": 799082,
+          "token": "event=REWARD|json=DaySinceInstall+PAID+PlayTimeMinutes"
+        },
+        {
+          "count": 798305,
+          "token": "event=ADS|json=DaySinceInstall+PAID+PlayTimeMinutes"
+        },
+        {
+          "count": 759456,
+          "token": "event=REWARD|json=DaySinceInstall+HIDDEN+PlayTimeMinutes"
+        },
+        {
+          "count": 755300,
+          "token": "event=REWARD|json=DISPLAYED+DaySinceInstall+PlayTimeMinutes+State"
+        },
+        {
+          "count": 739174,
+          "token": "event=REWARD|json=DaySinceInstall+PlayTimeMinutes+State+WATCHED"
+        },
+        {
+          "count": 739157,
+          "token": "event=REWARD|json=DaySinceInstall+PlayTimeMinutes+State+TOTAL REWARDS"
+        },
+        {
+          "count": 727375,
+          "token": "event=machine_learning|json=rewarded_ad_finished"
+        },
+        {
+          "count": 667527,
+          "token": "event=Mount Garage|json=levelUp"
+        },
+        {
+          "count": 649568,
+          "token": "event=Training|json=DaySinceInstall+PlayTimeMinutes+Speed+State"
+        }
+      ],
+      "total_occurrences": 73063802,
+      "total_unique": 227402,
+      "vocab_path": "artifacts/vocab/event_token_vocab.json"
+    },
+    "json_key": {
+      "coverage_occurrences": 0.9997062277071257,
+      "frequency_path": "artifacts/vocab/json_key_frequencies.json",
+      "kept_occurrences": 171711825,
+      "kept_unique": 64678,
+      "max_size": 200000,
+      "min_freq": 2,
+      "oov_occurrences": 50459,
+      "oov_unique": 50459,
+      "size": 64682,
+      "source_column": "json_top_keys",
+      "top_tokens": [
+        {
+          "count": 36063151,
+          "token": "DaySinceInstall"
+        },
+        {
+          "count": 36063151,
+          "token": "PlayTimeMinutes"
+        },
+        {
+          "count": 26432849,
+          "token": "State"
+        },
+        {
+          "count": 6830132,
+          "token": "ButtonShown"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state"
+        },
+        {
+          "count": 3826327,
+          "token": "Weapon"
+        },
+        {
+          "count": 2302703,
+          "token": "Damage"
+        },
+        {
+          "count": 2154701,
+          "token": "Heath"
+        },
+        {
+          "count": 1818486,
+          "token": "Speed"
+        },
+        {
+          "count": 1804973,
+          "token": "Regen"
+        },
+        {
+          "count": 1598176,
+          "token": "PAID"
+        },
+        {
+          "count": 1575222,
+          "token": "ad_offer"
+        },
+        {
+          "count": 1203390,
+          "token": "Roll 10"
+        },
+        {
+          "count": 1171860,
+          "token": "Resources"
+        },
+        {
+          "count": 1164830,
+          "token": "Capacity"
+        },
+        {
+          "count": 985545,
+          "token": "Efficiency1"
+        },
+        {
+          "count": 952666,
+          "token": "LOADED"
+        },
+        {
+          "count": 938536,
+          "token": "Body"
+        },
+        {
+          "count": 922777,
+          "token": "Gloves"
+        },
+        {
+          "count": 884963,
+          "token": "Boots"
+        }
+      ],
+      "total_occurrences": 171762284,
+      "total_unique": 115137,
+      "vocab_path": "artifacts/vocab/json_key_vocab.json"
+    },
+    "json_path": {
+      "coverage_occurrences": 0.994548170849511,
+      "frequency_path": "artifacts/vocab/json_path_frequencies.json",
+      "kept_occurrences": 482180710,
+      "kept_unique": 280797,
+      "max_size": 300000,
+      "min_freq": 2,
+      "oov_occurrences": 2643177,
+      "oov_unique": 2643177,
+      "size": 280801,
+      "source_column": "json_leaf_paths",
+      "top_tokens": [
+        {
+          "count": 36063151,
+          "token": "DaySinceInstall"
+        },
+        {
+          "count": 36063151,
+          "token": "PlayTimeMinutes"
+        },
+        {
+          "count": 26432849,
+          "token": "State_GateLevel"
+        },
+        {
+          "count": 26432849,
+          "token": "State_HeistLevel"
+        },
+        {
+          "count": 26432849,
+          "token": "State_HeistUnlocked"
+        },
+        {
+          "count": 26432849,
+          "token": "State_LabLevel"
+        },
+        {
+          "count": 26432849,
+          "token": "State_LabUnlocked"
+        },
+        {
+          "count": 12095340,
+          "token": "State_AdRewardCoeff"
+        },
+        {
+          "count": 6830132,
+          "token": "ButtonShown"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_ad_cnt"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_boss_kills_last_minute"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_critical_chance_lvl"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_critical_mult_lvl"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_damage"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_damage_lvl"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_death_cnt"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_game_minute"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_hard_balance"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_hard_revenue_last_minute"
+        },
+        {
+          "count": 5055746,
+          "token": "user_snapshot_active_state_hardness_calculate"
+        }
+      ],
+      "total_occurrences": 484823887,
+      "total_unique": 2923974,
+      "vocab_path": "artifacts/vocab/json_path_vocab.json"
+    },
+    "numeric_bucket": {
+      "coverage_occurrences": 0.9970404765889657,
+      "frequency_path": "artifacts/vocab/numeric_bucket_frequencies.json",
+      "kept_occurrences": 453824170,
+      "kept_unique": 215313,
+      "max_size": 500000,
+      "min_freq": 2,
+      "oov_occurrences": 1347090,
+      "oov_unique": 1347090,
+      "size": 215317,
+      "source_column": "numeric_bucket_tokens",
+      "top_tokens": [
+        {
+          "count": 26432849,
+          "token": "num=State_HeistLevel:zero"
+        },
+        {
+          "count": 26432849,
+          "token": "num=State_LabLevel:zero"
+        },
+        {
+          "count": 17630115,
+          "token": "num=State_HeistUnlocked:pos_1_2"
+        },
+        {
+          "count": 13648062,
+          "token": "num=State_LabUnlocked:zero"
+        },
+        {
+          "count": 12784787,
+          "token": "num=State_LabUnlocked:pos_1_2"
+        },
+        {
+          "count": 12591006,
+          "token": "num=DaySinceInstall:zero"
+        },
+        {
+          "count": 10316040,
+          "token": "num=State_AdRewardCoeff:pos_1_2"
+        },
+        {
+          "count": 8802734,
+          "token": "num=State_HeistUnlocked:zero"
+        },
+        {
+          "count": 8223150,
+          "token": "num=State_GateLevel:pos_4_8"
+        },
+        {
+          "count": 7547722,
+          "token": "num=State_GateLevel:pos_2_4"
+        },
+        {
+          "count": 5677148,
+          "token": "num=PlayTimeMinutes:pos_512_1024"
+        },
+        {
+          "count": 5487786,
+          "token": "num=PlayTimeMinutes:pos_256_512"
+        },
+        {
+          "count": 5269583,
+          "token": "num=PlayTimeMinutes:pos_128_256"
+        },
+        {
+          "count": 5046370,
+          "token": "num=user_snapshot_active_state_hard_revenue_last_minute:zero"
+        },
+        {
+          "count": 4971290,
+          "token": "num=user_snapshot_active_state_hard_balance:zero"
+        },
+        {
+          "count": 4851550,
+          "token": "num=user_snapshot_active_state_shop_activity_last_minute:zero"
+        },
+        {
+          "count": 4754038,
+          "token": "num=PlayTimeMinutes:pos_1024_2048"
+        },
+        {
+          "count": 4707526,
+          "token": "num=State_GateLevel:pos_8_16"
+        },
+        {
+          "count": 4375606,
+          "token": "num=DaySinceInstall:pos_8_16"
+        },
+        {
+          "count": 4191518,
+          "token": "num=DaySinceInstall:pos_4_8"
+        }
+      ],
+      "total_occurrences": 455171260,
+      "total_unique": 1562403,
+      "vocab_path": "artifacts/vocab/numeric_bucket_vocab.json"
+    }
+  }
+}

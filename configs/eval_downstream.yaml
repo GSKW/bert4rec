@@ -1,0 +1,21 @@
+inputs:
+  main_cls: data/exports/main_embeddings_cls.parquet
+  main_mean: data/exports/main_embeddings_mean.parquet
+  main_readout: data/exports/main_embeddings_readout.parquet
+  baseline_features: data/exports/baseline_features.parquet
+  baseline_embeddings: data/exports/baseline_embeddings_128d.parquet
+
+outputs:
+  metrics: artifacts/reports/downstream_metrics.csv
+  manifest: artifacts/manifests/downstream_eval_manifest.json
+
+eval:
+  targets: [retention_7d, retention_14d]
+  random_state: 42
+  include_legacy_proxy_feature_models: true
+  embedding_preprocess_mode: none
+  embedding_pca_components:
+  include_mlp_probe_models: false
+  mlp_hidden_dim: 128
+  mlp_max_iter: 120
+  dry_run_rows:

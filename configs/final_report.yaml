@@ -1,0 +1,5 @@
+sequence_metrics_path: artifacts/reports/sequence_metrics.csv
+downstream_metrics_path: artifacts/reports/downstream_metrics.csv
+output_xlsx: artifacts/reports/final_results.xlsx
+output_dir: artifacts/reports/final_plots
+manifest_path: artifacts/manifests/final_report_manifest.json

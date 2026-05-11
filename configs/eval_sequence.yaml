@@ -1,0 +1,18 @@
+checkpoint_path: artifacts/checkpoints/checkpoint_best.pt
+event_vocab_path: artifacts/vocab/event_token_vocab.json
+train_config_path: configs/train.yaml
+output_path: artifacts/reports/sequence_metrics.csv
+manifest_path: artifacts/manifests/sequence_eval_manifest.json
+
+input_prefixes:
+  train: data/processed/train_prefixes.parquet
+  valid: data/processed/valid_prefixes.parquet
+  test: data/processed/test_prefixes.parquet
+
+eval:
+  k: 10
+  batch_size: 512
+  num_workers: 0
+  device: auto
+  mixed_precision: true
+  dry_run_rows:

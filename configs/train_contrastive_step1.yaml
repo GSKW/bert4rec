@@ -1,0 +1,61 @@
+paths:
+  train_prefixes: data/processed/train_prefixes.parquet
+  valid_prefixes: data/processed/valid_prefixes.parquet
+  test_prefixes: data/processed/test_prefixes.parquet
+  event_vocab: artifacts/vocab/event_token_vocab.json
+  checkpoint_dir: artifacts/checkpoints/contrastive_step1
+  run_state_path: artifacts/manifests/train_contrastive_step1_run_state.json
+
+wandb:
+  project: bert4rec-events-embedder
+  entity:
+  mode: online
+  run_name: event-transformer-contrastive-step1
+  group: contrastive-step1
+  tags: [train, transformer, mlm, next-event, contrastive, cl4srec-style]
+
+model:
+  d_model: 256
+  n_heads: 8
+  n_layers: 6
+  ffn_dim: 1024
+  dropout: 0.1
+  max_seq_len: 151
+  time_gap_vocab_size: 10
+  session_vocab_size: 2
+  next_pooling: cls
+
+train:
+  seed: 42
+  device: auto
+  batch_size: 64
+  eval_batch_size: 128
+  num_workers: 2
+  epochs: 10
+  max_steps:
+  validate_every_steps: 500
+  log_every_steps: 50
+  checkpoint_every_steps: 1000
+  gradient_accumulation_steps: 4
+  mixed_precision: true
+  compile_model: false
+  grad_clip_norm: 1.0
+  learning_rate: 0.0002
+  weight_decay: 0.01
+  warmup_ratio: 0.06
+  min_lr_ratio: 0.1
+  mlm_probability: 0.15
+  mask_token_probability: 0.8
+  random_token_probability: 0.1
+  loss_weights:
+    mlm: 1.0
+    next: 0.5
+  contrastive:
+    enabled: true
+    weight: 0.2
+    temperature: 0.2
+    mask_rate: 0.2
+    crop_rate: 0.2
+    reorder_rate: 0.2
+  dry_run_train_rows:
+  dry_run_valid_rows:

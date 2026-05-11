@@ -1,0 +1,18 @@
+{
+  "checkpoint_path": "artifacts/checkpoints/readout_upgrade/checkpoint_best.pt",
+  "created_at": "2026-05-10T15:51:17.399396+00:00",
+  "device": "cpu",
+  "dry_run_rows": null,
+  "event_vocab_path": "artifacts/vocab/event_token_vocab.json",
+  "outputs": {
+    "cls": "data/exports/main_embeddings_readout_upgrade_cls.parquet",
+    "mean": "data/exports/main_embeddings_readout_upgrade_mean.parquet",
+    "readout": "data/exports/main_embeddings_readout_upgrade_readout.parquet"
+  },
+  "split_counts": {
+    "test": 20853,
+    "train": 97122,
+    "valid": 21148
+  },
+  "train_config_path": "configs/train_readout_upgrade.yaml"
+}

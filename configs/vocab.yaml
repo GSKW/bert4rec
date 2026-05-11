@@ -1,0 +1,33 @@
+input_manifest_path: artifacts/manifests/normalize_manifest.json
+vocab_dir: artifacts/vocab
+manifest_path: artifacts/manifests/vocab_manifest.json
+
+special_tokens:
+  pad: "[PAD]"
+  unk: "[UNK]"
+  mask: "[MASK]"
+  cls: "[CLS]"
+
+sources:
+  event_token: event_signature
+  json_key: json_top_keys
+  json_path: json_leaf_paths
+  attribute: attribute_tokens
+  numeric_bucket: numeric_bucket_tokens
+
+limits:
+  event_token:
+    min_freq: 2
+    max_size: 500000
+  json_key:
+    min_freq: 2
+    max_size: 200000
+  json_path:
+    min_freq: 2
+    max_size: 300000
+  attribute:
+    min_freq: 3
+    max_size: 1000000
+  numeric_bucket:
+    min_freq: 2
+    max_size: 500000

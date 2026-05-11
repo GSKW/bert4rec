@@ -1,0 +1,18 @@
+input_prefixes:
+  train: data/processed/train_prefixes.parquet
+  valid: data/processed/valid_prefixes.parquet
+  test: data/processed/test_prefixes.parquet
+
+outputs:
+  features: data/exports/baseline_features.parquet
+  embeddings: data/exports/baseline_embeddings_128d.parquet
+  markov_stats: artifacts/baselines/markov_transition_stats.parquet
+  manifest: artifacts/manifests/baseline_manifest.json
+
+baseline:
+  svd_dim: 128
+  hash_features: 262144
+  top_markov_k: 10
+  last_k: 5
+  random_state: 42
+  dry_run_rows:

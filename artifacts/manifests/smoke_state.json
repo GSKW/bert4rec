@@ -1,0 +1,10 @@
+{
+  "best_checkpoint": "artifacts/checkpoints/smoke_checkpoint.pt",
+  "config_hash": "920994ec20ed",
+  "epoch": 3,
+  "global_step": 16,
+  "last_checkpoint": "artifacts/checkpoints/smoke_checkpoint.pt",
+  "resumed": true,
+  "run_id": "j666jpcf",
+  "wandb_mode": "online"
+}

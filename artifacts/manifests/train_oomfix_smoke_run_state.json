@@ -1,0 +1,9 @@
+{
+  "best_checkpoint": "artifacts/checkpoints_oomfix_smoke/checkpoint_best.pt",
+  "best_metric": 0.0,
+  "config_hash": "6965faea16f3",
+  "epoch": 1,
+  "global_step": 1,
+  "last_checkpoint": "artifacts/checkpoints_oomfix_smoke/checkpoint_last.pt",
+  "run_id": "ie6m3rmh"
+}

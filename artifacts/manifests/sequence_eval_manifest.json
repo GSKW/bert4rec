@@ -1,0 +1,7 @@
+{
+  "checkpoint_path": "artifacts/checkpoints/checkpoint_best.pt",
+  "created_at": "2026-05-10T14:08:27.819229+00:00",
+  "dry_run_rows": null,
+  "output_path": "artifacts/reports/sequence_metrics.csv",
+  "rows": 27
+}
