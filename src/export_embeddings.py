@@ -102,7 +102,7 @@ def _load_model(
 
 
 def _metadata_columns(frame: pd.DataFrame) -> pd.DataFrame:
-    columns = [
+    fixed_columns = [
         "user_id",
         "split",
         "prefix_len",
@@ -110,11 +110,13 @@ def _metadata_columns(frame: pd.DataFrame) -> pd.DataFrame:
         "prefix_start_ts",
         "prefix_end_ts",
         "next_event_token_id",
-        "label_available_retention_7d",
-        "label_retention_7d",
-        "label_available_retention_14d",
-        "label_retention_14d",
     ]
+    label_columns = [
+        column
+        for column in frame.columns
+        if column.startswith("label_") or column.startswith("label_available_")
+    ]
+    columns = [column for column in [*fixed_columns, *label_columns] if column in frame.columns]
     return frame[columns].copy()
 
 

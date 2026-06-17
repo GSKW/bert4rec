@@ -46,6 +46,10 @@ class SequenceConfig:
     duckdb_temp_directory: str
     compression: str
     row_group_size: int
+    split_map_path: str | None
+    split_map_user_col: str
+    split_map_split_col: str
+    split_unknown_policy: str
 
 
 def load_sequence_config(path: str | Path) -> SequenceConfig:
@@ -74,6 +78,10 @@ def load_sequence_config(path: str | Path) -> SequenceConfig:
         duckdb_temp_directory=duckdb_cfg["temp_directory"],
         compression=parquet_cfg.get("compression", "zstd"),
         row_group_size=int(parquet_cfg.get("row_group_size", 100_000)),
+        split_map_path=raw.get("split_map_path"),
+        split_map_user_col=str(raw.get("split_map_user_col", "appmetrica_device_id")),
+        split_map_split_col=str(raw.get("split_map_split_col", "split")),
+        split_unknown_policy=str(raw.get("split_unknown_policy", "drop")).lower(),
     )
 
 
@@ -175,6 +183,35 @@ def split_for_user(user_id: str, config: SequenceConfig) -> str:
     return "test"
 
 
+def load_split_map(path: Path, user_col: str, split_col: str) -> dict[str, str]:
+    import pandas as pd
+
+    frame = pd.read_csv(path, dtype="string", low_memory=False)
+    required = {user_col, split_col}
+    missing = [column for column in required if column not in frame.columns]
+    if missing:
+        raise ValueError(f"Missing columns in split map {path}: {missing}")
+
+    frame = frame[[user_col, split_col]].dropna()
+    aliases = {
+        "train": "train",
+        "trn": "train",
+        "valid": "valid",
+        "val": "valid",
+        "validation": "valid",
+        "test": "test",
+        "tst": "test",
+    }
+    mapping: dict[str, str] = {}
+    for user_id, split in zip(frame[user_col], frame[split_col], strict=False):
+        split_norm = str(split).strip().lower()
+        canonical = aliases.get(split_norm)
+        if canonical is None:
+            continue
+        mapping[str(user_id)] = canonical
+    return mapping
+
+
 def time_gap_id(delta_seconds: int) -> int:
     if delta_seconds <= 0:
         return TIME_GAP_TOKEN_TO_ID["gap=0"]
@@ -204,13 +241,13 @@ def _has_event_in_window(timestamps: list[int], start_ts: int, end_ts: int) -> b
 
 def _make_prefix_records_for_user(
     user_id: str,
+    split: str,
     event_token_ids: list[int],
     timestamps: list[int],
     session_ids: list[str],
     config: SequenceConfig,
     dataset_max_ts: int,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    split = split_for_user(user_id, config)
     user_record = {
         "user_id": user_id,
         "split": split,
@@ -279,12 +316,27 @@ def build_user_sequences_and_labels(
     from tqdm.auto import tqdm
 
     root = Path(project_root)
+    if config.split_unknown_policy not in {"drop", "hash"}:
+        raise ValueError("split_unknown_policy must be either 'drop' or 'hash'")
+
     sorted_path = create_sorted_event_token_parquet(
         config,
         project_root=root,
         max_shards=max_shards,
         overwrite=overwrite_sorted,
     )
+    split_map: dict[str, str] | None = None
+    split_source = "hash"
+    if config.split_map_path is not None:
+        split_map_path = root / config.split_map_path
+        if not split_map_path.exists():
+            raise FileNotFoundError(f"Split map not found: {split_map_path}")
+        split_map = load_split_map(
+            split_map_path,
+            user_col=config.split_map_user_col,
+            split_col=config.split_map_split_col,
+        )
+        split_source = str(config.split_map_path)
 
     parquet_file = pq.ParquetFile(sorted_path)
     dataset_max_ts = 0
@@ -300,13 +352,30 @@ def build_user_sequences_and_labels(
     current_event_ids: list[int] = []
     current_timestamps: list[int] = []
     current_session_ids: list[str] = []
+    dropped_users_missing_split = 0
 
     def flush_current_user() -> None:
-        nonlocal current_user, current_event_ids, current_timestamps, current_session_ids
+        nonlocal current_user, current_event_ids, current_timestamps, current_session_ids, dropped_users_missing_split
         if current_user is None or not current_event_ids:
             return
+
+        if split_map is None:
+            user_split = split_for_user(current_user, config)
+        else:
+            user_split = split_map.get(current_user)
+            if user_split is None and config.split_unknown_policy == "hash":
+                user_split = split_for_user(current_user, config)
+            if user_split is None:
+                dropped_users_missing_split += 1
+                current_user = None
+                current_event_ids = []
+                current_timestamps = []
+                current_session_ids = []
+                return
+
         prefix_records, user_record = _make_prefix_records_for_user(
             current_user,
+            user_split,
             current_event_ids,
             current_timestamps,
             current_session_ids,
@@ -372,6 +441,10 @@ def build_user_sequences_and_labels(
         ),
         "time_gap_vocab_path": str(time_gap_vocab_path.relative_to(root)),
         "splits": summary_by_split,
+        "split_source": split_source,
+        "split_unknown_policy": config.split_unknown_policy,
+        "split_map_users": 0 if split_map is None else len(split_map),
+        "dropped_users_missing_split": dropped_users_missing_split,
     }
     atomic_write_json(manifest, root / config.manifest_path)
     return manifest

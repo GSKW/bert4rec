@@ -61,14 +61,14 @@ def _embedding_matrix(frame: pd.DataFrame) -> np.ndarray:
 def _feature_columns(frame: pd.DataFrame, include_proxy_next_event_features: bool = False) -> list[str]:
     excluded = {
         "user_id", "split", "prefix_start_ts", "prefix_end_ts",
-        "label_available_retention_7d", "label_retention_7d",
-        "label_available_retention_14d", "label_retention_14d",
     }
     if not include_proxy_next_event_features:
         excluded.update({"next_event_token_id", "markov_actual_prob", "markov_actual_rank"})
     cols = []
     for col in frame.columns:
         if col in excluded:
+            continue
+        if col.startswith("label_") or col.startswith("label_available_"):
             continue
         if pd.api.types.is_numeric_dtype(frame[col]):
             cols.append(col)

@@ -10,7 +10,7 @@ outputs:
   manifest: artifacts/manifests/downstream_eval_step1_manifest.json
 
 eval:
-  targets: [retention_7d, retention_14d]
+  targets: [retention_7d, retention_14d, retention_30d]
   random_state: 42
   include_legacy_proxy_feature_models: false
   embedding_preprocess_mode: l2_pca_standardize

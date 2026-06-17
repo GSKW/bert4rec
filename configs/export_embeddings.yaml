@@ -1,4 +1,4 @@
-checkpoint_path: artifacts/checkpoints/checkpoint_best.pt
+checkpoint_path: artifacts/checkpoints/20260514-155254/checkpoint_best.pt
 event_vocab_path: artifacts/vocab/event_token_vocab.json
 train_config_path: configs/train.yaml
 manifest_path: artifacts/manifests/main_embeddings_manifest.json

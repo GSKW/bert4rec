@@ -197,7 +197,7 @@ def _contrastive_info_nce_loss(z1: torch.Tensor, z2: torch.Tensor, temperature: 
     z2 = F.normalize(z2, p=2, dim=-1)
     n = z1.size(0)
     reps = torch.cat([z1, z2], dim=0)
-    logits = reps @ reps.transpose(0, 1)
+    logits = (reps @ reps.transpose(0, 1)).float()
     logits = logits / max(float(temperature), 1e-6)
     eye = torch.eye(2 * n, device=logits.device, dtype=torch.bool)
     logits = logits.masked_fill(eye, -1e9)

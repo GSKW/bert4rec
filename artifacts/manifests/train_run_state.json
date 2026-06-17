@@ -1,9 +1,0 @@
-{
-  "best_checkpoint": "artifacts/checkpoints/checkpoint_best.pt",
-  "best_metric": 0.786122858864176,
-  "config_hash": "e86b478ab231",
-  "epoch": 10,
-  "global_step": 3780,
-  "last_checkpoint": "artifacts/checkpoints/checkpoint_last.pt",
-  "run_id": "1b22laik"
-}

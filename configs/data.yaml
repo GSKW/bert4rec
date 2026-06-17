@@ -1,4 +1,4 @@
-raw_csv_path: data/extracted/events.csv
+raw_csv_path: events.csv
 interim_dir: data/interim
 manifest_path: artifacts/manifests/ingest_manifest.json
 

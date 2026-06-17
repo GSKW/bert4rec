@@ -20,7 +20,7 @@ model:
   n_layers: 6
   ffn_dim: 1024
   dropout: 0.1
-  max_seq_len: 151
+  max_seq_len: 513
   time_gap_vocab_size: 10
   session_vocab_size: 2
   next_pooling: cls
@@ -28,8 +28,8 @@ model:
 train:
   seed: 42
   device: auto
-  batch_size: 64
-  eval_batch_size: 128
+  batch_size: 4
+  eval_batch_size: 8
   num_workers: 2
   epochs: 10
   max_steps:

@@ -7,13 +7,20 @@ sorted_events_path: artifacts/work/events_sorted_for_sequences.parquet
 splits_dir: data/splits
 processed_dir: data/processed
 
-prefix_lengths: [50, 100, 150]
-retention_days: [7, 14]
+prefix_lengths: [512]
+retention_days: [7, 14, 30]
 split:
   train: 0.70
   valid: 0.15
   test: 0.15
   seed: 42
+
+# If provided, this CSV overrides hash-based user split assignment.
+# Expected columns by default: appmetrica_device_id, split
+split_map_path: master_split.csv
+split_map_user_col: appmetrica_device_id
+split_map_split_col: split
+split_unknown_policy: drop
 
 duckdb:
   memory_limit: 20GB

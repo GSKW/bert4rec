@@ -1,4 +1,4 @@
-checkpoint_path: artifacts/checkpoints/checkpoint_best.pt
+checkpoint_path: artifacts/checkpoints/20260514-155254/checkpoint_best.pt
 event_vocab_path: artifacts/vocab/event_token_vocab.json
 train_config_path: configs/train.yaml
 output_path: artifacts/reports/sequence_metrics.csv
@@ -16,3 +16,10 @@ eval:
   device: auto
   mixed_precision: true
   dry_run_rows:
+  include_gru_baseline: true
+  gru_embedding_dim: 128
+  gru_hidden_dim: 128
+  gru_epochs: 2
+  gru_batch_size: 512
+  gru_num_workers: 0
+  gru_lr: 0.001
